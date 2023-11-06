@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #die {
+            height: 100px;
+            width: 100px;
+            background-color: rgb(0, 255, 213); 
+            position: relative;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <div id='die'>
+
+    </div> 
+</body>
+<script>
+ 
+    function makeDot(x,y){
+  $('<div>')
+    .css("height", 15)
+    .css("width", 15)
+    .css("background-color", "black")
+    .css("position", "absolute")
+    .css('top', x + 10)
+    .css('left', y + 10)
+    .appendTo("#die");
+    }
+   
+    function rollDie(dieID){
+        $("#die").empty();
+    
+        
+        var randomNum = 6
+ 
+       // Math.ceil(Math.random() * 6)
+ 
+        if (randomNum === 1) {
+    makeDot(30, 30, die); // middle middle
+}
+else if (randomNum === 2) {
+    makeDot(5, 5, die); // top left
+    makeDot(60, 60, die); // bottom right
+}
+else if (randomNum === 3) {
+    makeDot(5, 5, die); // top left
+    makeDot(33, 33, die); // bottom right
+    makeDot(60, 60, die); // middle middle
+}
+else if (randomNum === 4) {
+    makeDot(60, 60, die); // bottom right
+    makeDot(5, 5, die); // top left
+    makeDot(5, 60, die); // bottom left
+    makeDot(60, 5, die); // top right
+}
+else if (randomNum === 5) {
+    makeDot(33, 33, die); // middle middle
+    makeDot(60, 60, die); // bottom right
+    makeDot(5, 5, die); // top left
+    makeDot(5, 60, die); // bottom left
+    makeDot(60, 5, die); // top right
+}
+else if (randomNum === 6) {
+    makeDot(60, 60, die); // bottom right
+    makeDot(5, 5, die); // top left
+    makeDot(5, 60, die); // bottom left
+    makeDot(60, 5, die); // top right
+    makeDot(33, 60, die); // middle left
+    makeDot(33, 5, die); // middle right
+}
+    }
+    $("#die").on("click", handlerFn)
+    function handlerFn(){
+        rollDie()
+    }
+</script>
+</html>
