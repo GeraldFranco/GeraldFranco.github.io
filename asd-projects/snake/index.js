@@ -50,7 +50,7 @@ snake.body = [];
   makeSnakeSquare(10, 10);
   snake.head = snake.body[0];
   // TODO 4b-2: initialize the apple
-  makeApple()
+  makeApple();
   // TODO 5a: Initialize the interval
   // start update interval
 updateInterval = setInterval(update, 100);  
@@ -113,10 +113,10 @@ function moveSnake() {
     snake.head.column = snake.head.column + 1;
   }
   if (snake.head.direction === "up") {
-    snake.head.column = snake.head.column - 1;
+    snake.head.row = snake.head.row - 1;
   }
   if (snake.head.direction === "down") {
-    snake.head.column = snake.head.column + 1;
+    snake.head.row = snake.head.row + 1;
   }
   repositionSquare(snake.head);
   /* 
@@ -147,7 +147,18 @@ function hasHitWall() {
   
   HINT: What will the row and column of the snake's head be if this were the case?
   */
-
+ if (snake.head.row === ROWS + 1){
+  return true;
+ }
+  if(snake.head.row === -1){
+    return true;
+  }
+  if(snake.head.column === COLUMNS -1){
+    return true;
+  }
+  if(snake.head.column === -1){
+    return true;
+  }
   return false;
 }
 
@@ -158,7 +169,12 @@ function hasCollidedWithApple() {
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
-
+  if (snake.head.row === apple.row){
+    hasCollidedWithApple();
+  }
+  if(snake.head.column === apple.column){
+    hasCollidedWithApple();
+  }
   return false;
 }
 
@@ -224,7 +240,7 @@ function endGame() {
 /* Create an HTML element for the apple using jQuery. Then find a random
  * position on the board that is not occupied and position the apple there.
  */
-function makeApple() {
+
   // TODO 4b-1: Fill in the makeApple() code block
   /* Create an HTML element for the apple using jQuery. Then find a random
  * position on the board that is not occupied and position the apple there.
@@ -243,7 +259,7 @@ function makeApple() {
     // position the apple on the screen
     repositionSquare(apple);
   }
-}
+
 
 /* Create an HTML element for a snakeSquare using jQuery. Then, given a row and
  * column on the board, position it on the screen. Finally, add the new
